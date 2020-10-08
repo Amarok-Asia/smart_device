@@ -69,19 +69,20 @@ else{
  
 }
 void postrequest(){
- delay(100);  
- cr+=1;
- Serial.println("posting request");
-  if(WiFi.status()== WL_CONNECTED){   //Check WiFi connection status
+ 
+   Serial.println("posting request");
+   if(WiFi.status()== WL_CONNECTED){   //Check WiFi connection status
  
    HTTPClient http;    //Declare object of class HTTPClient
+   cr+=1;
+   String C = String(cr);
 
    
 
  
    http.begin("http://class-card-marking-system-api.herokuapp.com/api/posts");   //Specify request destination
    http.addHeader("Content-Type", "application/json");
-   int httpCode = http.POST("{\"title\":\"testing1\",\"body\":\"this is nodemcu\"}");
+   int httpCode = http.POST("{\"title\":\"Index: "+C+"\",\"body\":\"Welcome....!\"}");
   
    String payload = http.getString();//Get the response payload
  
@@ -96,7 +97,7 @@ void postrequest(){
  
  }
  
-  delay(3000);  //Send a request every 30 seconds
+  delay(3000);  //Send a request every 3 seconds
  
 }
 
